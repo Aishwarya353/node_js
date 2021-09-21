@@ -19,13 +19,16 @@
 //"mkdir" creates the new directory
 //"unlink" deletes the file
 //"utf8" is just the encoding format(human readable format)
+//try catch is just to handle the error if that folder already exit and its not mandatory
 const fs = require("fs/promises");
 async function FileSystem() {
   const file = await fs.readFile("./demo.txt", "utf8");
   console.log(file);
   await fs.appendFile("./world.txt", "helloworld");
   await fs.unlink("./world.txt");
-  await fs.mkdir("worldfolder");
+  try {
+    await fs.mkdir("worldfolder");
+  } catch {}
   await fs.appendFile("./worldfolder/world", "hello content in new folder");
   await fs.writeFile("./blank.txt", "bkjdgft \n kdhvbks \t gajd");
 }
